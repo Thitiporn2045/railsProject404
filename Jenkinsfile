@@ -2,11 +2,6 @@
 pipeline {
     agent any
     stages {
-        stage('list file') {
-            steps { 
-                sh 'ls -l'
-            }
-        }
         stage('Build Docker Image') {
             steps {
                 // สร้าง Docker image
