@@ -7,8 +7,8 @@ pipeline {
                 sh """
                     docker build --rm \
                     -f Dockerfile \
-                    -t registry-1.docker.io/thitiporn2045/jenkins-oddscloud \
-                    -t registry-1.docker.io/thitiporn2045/jenkins-oddscloud:${env.BUILD_NUMBER} \
+                    -t docker.io/thitiporn2045/jenkins-oddscloud \
+                    -t docker.io/thitiporn2045/jenkins-oddscloud:${env.BUILD_NUMBER} \
                     .
                 """
             }
@@ -17,11 +17,12 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'DOCKER_CREDENTIALS_GIFT', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                     sh """
+                        echo $DOCKER_USERNAME
                         # เข้าสู่ Docker registry
-                        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD registry-1.docker.io
+                        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD docker.io
                         
                         # Push Docker image ไปที่ DockerHub
-                        docker push registry-1.docker.io/thitiporn2045/jenkins-oddscloud:${env.BUILD_NUMBER}
+                        docker push docker.io/thitiporn2045/jenkins-oddscloud:${env.BUILD_NUMBER}
                     """
                 }
             }
