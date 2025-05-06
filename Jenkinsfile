@@ -40,7 +40,7 @@ pipeline {
                                     docker pull registry-1.docker.io/thitiporn2045/jenkins-oddscloud:${env.BUILD_NUMBER}
                                     
                                     # Run Docker container บน server
-                                    docker run -dp 7001:80 registry-1.docker.io/thitiporn2045/jenkins-oddscloud:${env.BUILD_NUMBER}
+                                    docker run -dp 7002:80 registry-1.docker.io/thitiporn2045/jenkins-oddscloud:${env.BUILD_NUMBER}
                                 \"
                             """
                         }
